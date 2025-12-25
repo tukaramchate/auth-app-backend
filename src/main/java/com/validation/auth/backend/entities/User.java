@@ -25,12 +25,17 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     private UUID id;
 
-    @Column(unique = true,length = 300 )
+    @Email(message = "Invalid email format")
+    @NotBlank(message = "Email is required")
+    @Column(unique = true, length = 300, nullable = false)
     private String email;
 
-    @Column(length = 500 )
+    @NotBlank(message = "Name is required")
+    @Column(length = 500)
     private String name;
 
+    @NotBlank(message = "Password is required")
+    @Column(nullable = false)
     private String password;
     private String image;
     private boolean enable = true;
